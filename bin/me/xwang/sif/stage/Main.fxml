@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.xwang.sif.controller.MainController">
+  <children>
+      <MenuBar prefHeight="17.0" prefWidth="900.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="文件">
+               <items>
+                  <Menu mnemonicParsing="false" text="导入">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onImportAssets" text="assets文件夹" />
+                        <MenuItem mnemonicParsing="false" onAction="#onImportDb" text="db文件夹" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="导出">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onExportAllImg" text="所有图片" />
+                        <MenuItem mnemonicParsing="false" onAction="#onExportAllNavi" text="所有卡片" />
+                        <Menu mnemonicParsing="false" text="所有头像">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#onExportAllIcon" text="含框架" />
+                          </items>
+                        </Menu>
+                     </items>
+                  </Menu>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="退出" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="关于">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="关于SIF Resource Explorer" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <SplitPane dividerPositions="0.2, 0.75" prefHeight="160.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <items>
+            <Accordion>
+              <panes>
+                <TitledPane text="所有文件">
+                     <content>
+                        <TreeView fx:id="fileTreeView" onKeyPressed="#onFileTreeKeyPressed" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                </TitledPane>
+                <TitledPane onMouseClicked="#onCardSecClicked" text="卡片">
+                     <content>
+                        <ListView fx:id="cardListView" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                </TitledPane>
+                  <TitledPane onMouseClicked="#onIconSecClicked" text="头像">
+                     <content>
+                        <ListView fx:id="iconListView" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                  </TitledPane>
+              </panes>
+            </Accordion>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="43.0" prefWidth="411.0" style="-fx-background-color: #bbbbbb;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="imgNameLabel" text="N/A">
+                           <padding>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                           </padding>
+                        </Label>
+                        <Button mnemonicParsing="false" onAction="#onExportSingle" text="导出" />
+                     </children>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
+                  </FlowPane>
+               </top>
+               <center>
+                  <ImageView fx:id="imageView" fitHeight="436.0" fitWidth="407.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+            <ScrollPane prefViewportHeight="474.0" prefViewportWidth="136.0">
+               <content>
+                  <VBox>
+                     <children>
+                        <Label text="信息">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Separator prefWidth="90.0" />
+                        <Label fx:id="imgInfoLabel" text="N/A">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </items>
+      </SplitPane>
+  </children>
+</VBox>
